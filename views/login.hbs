@@ -1,0 +1,34 @@
+{{> navbar }}
+
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Login</h5>
+                <p class="text-muted">Acesse sua conta com e-mail e senha.</p>
+
+                <form method="POST" action="/usuarios/login">
+                    <div class="mb-3">
+                        <label class="form-label">E-mail</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Senha</label>
+                        <input type="password" name="senha" class="form-control" required>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                        <a href="/" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </form>
+
+                <hr class="my-4">
+                <p class="text-center mb-0">
+                    Não possui conta? <a href="/usuarios/cadastro">Cadastre-se aqui</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

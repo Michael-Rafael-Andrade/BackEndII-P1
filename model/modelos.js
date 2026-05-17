@@ -87,12 +87,13 @@ Produto.init({
         allowNull: false
     }
 },
-    {
-        sequelize,
-        freezeTableName: true,
-        createdAt: 'criado_em',
-        updatedAt: 'atualizado_em'
-    });
+    {   // Configurações adicionais do modelo
+        sequelize, // para estabelecer conexão com o BD
+        freezeTableName: true, // nome da tabela igual ao nome da classe
+        createdAt: 'criada_em', // mapeia o atributo 'createdAt' padrão para 'criada_em'
+        updatedAt: 'atualizada_em', // mapeia o atributo 'updatedAt' padrão para 'atualizada_em'
+    },
+);
 
 // Relacionamentos obrigatórios (Foreign Keys)
 Categoria.hasMany(Produto, { foreignKey: { name: 'categoria_id', allowNull: false } });
@@ -101,11 +102,15 @@ Produto.belongsTo(Categoria, { foreignKey: { name: 'categoria_id', allowNull: fa
 Usuario.hasMany(Produto, { foreignKey: { name: 'usuario_id', allowNull: false } });
 Produto.belongsTo(Usuario, { foreignKey: { name: 'usuario_id', allowNull: false } });
 
-// Sincronização estrutural com o Banco de Dados
+
+
+// // APÓS CRIAR OS ELEMENTOS DA TABELA DEVE COMENTAR TODO O CÓDIGO DE CRIAÇÃO DOS ELEMENTOS DENTRO DA TABELA 
+// // Criar o banco de dados dentro da tabela 'demandas_ti' que está dentro do mysql 
 sequelize.sync({ alter: true }).then(() => {
     console.log('Modelos ElectroStore sincronizados com sucesso.');
 }).catch((error) => {
     console.error('Falha na sincronização dos modelos:', error);
 });
+
 
 module.exports = { Categoria, Usuario, Produto };

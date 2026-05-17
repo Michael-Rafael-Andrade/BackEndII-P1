@@ -5,8 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs = require('hbs'); // importar o hbs para usar o partials
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var rotasIndex = require('./routes/rotasIndex');
+var rotasUsuario = require('./routes/rotasUsuario');
 
 var app = express();
 
@@ -32,8 +32,8 @@ hbs.registerHelper('eq', function(a,b){
 // Partials
 
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', rotasIndex);
+app.use('/usuarios', rotasUsuario);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
