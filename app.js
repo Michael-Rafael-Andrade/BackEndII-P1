@@ -10,6 +10,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const { Usuario } = require('./model/modelos'); // Importa os modelo para consultar o banco
+var rotasProduto = require('./routes/rotasProduto');
 
 
 var rotasIndex = require('./routes/rotasIndex');
@@ -117,6 +118,7 @@ app.use(function (req, res, next) {
 
 app.use('/', rotasIndex);
 app.use('/usuarios', rotasUsuario);
+app.use('/produtos', rotasProduto);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

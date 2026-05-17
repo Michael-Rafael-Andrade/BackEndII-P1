@@ -1,37 +1,51 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
-    <div class="container">
-        <a class="navbar-brand" href="/">
-            <i class="bi bi-shop"></i> ElectroStore
-        </a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">ElectroStore</a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-            aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/historia">Nossa História</a>
+        </li>
+        {{#if user}}
+          {{#if (eq user.perfil 'admin')}}
+            <li class="nav-item">
+              <a class="nav-link" href="/produtos/cadastro">Cadastrar Produto</a>
+            </li>
+          {{/if}}
+          {{#if (eq user.perfil 'lojista')}}
+            <li class="nav-item">
+              <a class="nav-link" href="/produtos/cadastro">Cadastrar Produto</a>
+            </li>
+          {{/if}}
+        {{/if}}
+      </ul>
 
-        <div class="collapse navbar-collapse" id="mainNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/sobre">Nossa História</a>
-                </li>
-            </ul>
-
-            <ul class="navbar-nav ms-auto"> {{#if user}}
-                <li class="nav-item d-flex align-items-center">
-                    <span class="navbar-text me-3 text-white">Olá, {{user.nome}}</span>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-outline-light" href="/usuarios/logout">Sair</a>
-                </li>
-                {{else}}
-                <li class="nav-item">
-                    <a class="nav-link" href="/usuarios/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/usuarios/cadastro">Cadastrar</a>
-                </li>
-                {{/if}}
-            </ul>
-        </div>
+      <ul class="navbar-nav ms-auto">
+        {{#if user}}
+          <li class="nav-item">
+            <span class="nav-link text-white active">
+              <i class="bi bi-person-circle"></i> 
+              {{#if (eq user.perfil 'admin')}}Administrador{{/if}}
+              {{#if (eq user.perfil 'lojista')}}Lojista{{/if}}
+              {{#if (eq user.perfil 'usuario')}}Usuário{{/if}}
+            </span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/usuarios/logout">
+              <i class="bi bi-box-arrow-right"></i> Sair
+            </a>
+          </li>
+        {{else}}
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/usuarios/login">Login</a>
+          </li>
+        {{/if}}
+      </ul>
     </div>
+  </div>
 </nav>

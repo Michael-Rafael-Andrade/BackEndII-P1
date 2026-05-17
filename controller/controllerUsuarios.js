@@ -1,6 +1,7 @@
 const { Produto, Categoria, Usuario } = require('../model/modelos');
 // Importando o criptografador e o modelo de Usuário
 const bcrypt = require('bcrypt');
+const passport = require('passport');
 
 // Função que entrega a tela de cadastro
 exports.cadastro_get = function (req, res) {
@@ -82,4 +83,6 @@ exports.logout = function (req, res, next) {
         res.redirect('/');
     });
 };
+
+
 
