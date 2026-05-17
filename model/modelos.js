@@ -96,11 +96,15 @@ Produto.init({
 );
 
 // Relacionamentos obrigatórios (Foreign Keys)
-Categoria.hasMany(Produto, { foreignKey: { name: 'categoria_id', allowNull: false } });
-Produto.belongsTo(Categoria, { foreignKey: { name: 'categoria_id', allowNull: false } });
+// Uma Categoria tem vários Produtos
+Categoria.hasMany(Produto, { foreignKey: 'categoria_id' });
+// Um Produto pertence a uma Categoria (apelido 'categoria')
+Produto.belongsTo(Categoria, { foreignKey: 'categoria_id', as: 'categoria' });
 
-Usuario.hasMany(Produto, { foreignKey: { name: 'usuario_id', allowNull: false } });
-Produto.belongsTo(Usuario, { foreignKey: { name: 'usuario_id', allowNull: false } });
+// Um Usuário tem vários Produtos
+Usuario.hasMany(Produto, { foreignKey: 'usuario_id' });
+// Um Produto pertence a um Usuário (apelido 'usuario')
+Produto.belongsTo(Usuario, { foreignKey: 'usuario_id', as: 'usuario' });
 
 
 

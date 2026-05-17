@@ -1,20 +1,30 @@
 {{> navbar }}
-
-<div class="row justify-content-center">
+<div class="row justify-content-center mt-5">
     <div class="col-md-6">
-        <div class="card mb-4">
+        <div class="card">
             <div class="card-body">
                 <h5 class="card-title mb-4">Cadastro de Usuário</h5>
-                
+
+                {{#if erros}}
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        {{#each erros}}
+                        <li>{{this.msg}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+                {{/if}}
+
                 <form method="POST" action="/usuarios/cadastro">
+
                     <div class="mb-3">
                         <label class="form-label">Nome</label>
-                        <input type="text" name="nome" class="form-control" required>
+                        <input type="text" name="nome" class="form-control" required value="{{old.nome}}">
                     </div>
-                    
+
                     <div class="mb-3">
                         <label class="form-label">E-mail</label>
-                        <input type="email" name="email" class="form-control" required>
+                        <input type="email" name="email" class="form-control" required value="{{old.email}}">
                     </div>
 
                     <div class="mb-3">
@@ -26,11 +36,12 @@
                         <label class="form-label">Confirmar senha</label>
                         <input type="password" name="confirmacao_senha" class="form-control" required>
                     </div>
-                    
-                    <div class="mt-4">
+
+                    <div class="d-flex gap-2">
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                         <a href="/" class="btn btn-secondary">Cancelar</a>
                     </div>
+
                 </form>
             </div>
         </div>

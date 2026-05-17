@@ -3,12 +3,12 @@
         <a class="navbar-brand" href="/">
             <i class="bi bi-shop"></i> ElectroStore
         </a>
-        
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
             aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        
+
         <div class="collapse navbar-collapse" id="mainNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
@@ -16,13 +16,21 @@
                 </li>
             </ul>
 
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto"> {{#if user}}
+                <li class="nav-item d-flex align-items-center">
+                    <span class="navbar-text me-3 text-white">Olá, {{user.nome}}</span>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-light" href="/usuarios/logout">Sair</a>
+                </li>
+                {{else}}
                 <li class="nav-item">
                     <a class="nav-link" href="/usuarios/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/usuarios/cadastro">Me Cadastrar</a>
+                    <a class="nav-link" href="/usuarios/cadastro">Cadastrar</a>
                 </li>
+                {{/if}}
             </ul>
         </div>
     </div>
