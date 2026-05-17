@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var hbs = require('hbs'); // importar o hbs para usar o partials
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -18,6 +19,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Partials
+// Registra partials do handlebars (view/partials)
+hbs.registerPartials(path.join( __dirname, 'views', 'partials'));
+
+
+// HELPER DO HANDLEBARS PARA COMPARAÇÕES NO HTML (IGUALDADE)
+hbs.registerHelper('eq', function(a,b){
+  return a === b;
+});
+// Partials
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
